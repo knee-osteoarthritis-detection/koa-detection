@@ -1,0 +1,22 @@
+
+.footer {
+  background-color: #f8fafc;
+  padding: 2rem 0;
+  color: #64748b;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.footer-copyright {
+  font-size: 0.875rem;
+}

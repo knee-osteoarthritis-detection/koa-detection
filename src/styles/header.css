@@ -1,0 +1,132 @@
+.header {
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logo-container {
+  flex: 0 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-text-bold {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--medical-600);
+}
+
+.logo-text-light {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #4b5563;
+}
+
+.desktop-nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+    padding-right: 0;
+    justify-content: flex-end;
+    position: absolute;
+    right: 1rem;
+  }
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+.nav-button {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  background-color: transparent;
+  color: #4b5563;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.nav-button:hover {
+  color: var(--medical-500);
+}
+
+.nav-button-active {
+  background-color: var(--medical-500);
+  color: white;
+}
+
+.nav-button-active:hover {
+  background-color: var(--medical-600);
+  color: white;
+}
+
+.mobile-menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-button {
+    display: none;
+  }
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0 1rem 0;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: #4b5563;
+  border-radius: var(--radius);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.mobile-nav-link:hover {
+  background-color: #f3f4f6;
+}
+
+.mobile-nav-link-active {
+  background-color: var(--medical-500);
+  color: white;
+}
+
+.mobile-nav-link-active:hover {
+  background-color: var(--medical-600);
+}

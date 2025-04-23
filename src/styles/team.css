@@ -1,0 +1,192 @@
+.team-hero {
+  background-image: linear-gradient(to bottom, var(--medical-50), white);
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.team-icon {
+  height: 3rem;
+  width: 3rem;
+  color: var(--medical-600);
+  margin: 0 auto 1.5rem;
+}
+
+.team-description {
+  color: #4b5563;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.team-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+
+.team-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.team-card-header {
+  background-color: var(--medical-50);
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-avatar {
+  width: 5rem;
+  height: 5rem;
+  background-color: var(--medical-100);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-avatar-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--medical-600);
+}
+
+.team-card-content {
+  padding: 1.5rem;
+}
+
+.team-name {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+}
+
+.team-title {
+  color: var(--medical-600);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.team-bio {
+  color: #4b5563;
+}
+
+.team-contact {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.team-contact-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+
+.team-email {
+  font-size: 0.875rem;
+  color: var(--medical-600);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.team-email:hover {
+  color: var(--medical-700);
+}
+
+.join-team-card {
+  margin-top: 3rem;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.join-team-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--medical-700);
+  margin-bottom: 1rem;
+}
+
+.join-team-description {
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+
+.join-team-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .join-team-actions {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+.contact-link {
+  display: inline-block;
+  background-color: var(--medical-500);
+  color: white;
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.375rem;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.contact-link:hover {
+  background-color: var(--medical-600);
+}
+
+.positions-link {
+  display: inline-block;
+  background-color: white;
+  border: 1px solid var(--medical-300);
+  color: var(--medical-700);
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.375rem;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.positions-link:hover {
+  background-color: var(--medical-50);
+}
+
+.team-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.team-social-link {
+  color: #64748b;
+  transition: color 0.2s;
+}
+
+.team-social-link:hover {
+  color: #3b82f6;
+}
