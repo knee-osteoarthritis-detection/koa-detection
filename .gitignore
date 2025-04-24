@@ -3,6 +3,7 @@ echo "# Dependencies
 /node_modules
 /.pnp
 .pnp.js
+/venv
 
 # Testing
 /coverage

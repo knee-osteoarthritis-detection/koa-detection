@@ -14,7 +14,7 @@ import "./styles/global.css";
 import { useState } from "react";
 
 // ► updated to your live Render backend:
-const API_BASE_URL = "https://knee-oa-backend.onrender.com";
+const API_BASE_URL = "http://localhost:10000";
 
 const queryClient = new QueryClient();
 
