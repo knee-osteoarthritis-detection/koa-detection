@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: knee-oa-backend
+    env: python
+    plan: free
+    buildCommand: "pip install -r backend/requirements.txt"
+    startCommand: "python backend/app.py"
+    envVars:
+      - key: PORT
+        value: 10000
