@@ -36,7 +36,7 @@ const HomePage = () => {
                 <div className="hero-image-blob"></div>
                 {!imageError ? (
                   <img 
-                    src="/images/home.jpg"
+                    src="public/images/home.jpg"
                     alt="Knee X-ray showing lateral and frontal views" 
                     className="hero-image"
                     onError={(e) => {

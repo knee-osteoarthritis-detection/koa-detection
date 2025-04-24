@@ -5,17 +5,17 @@ const ModelArchitectureSlideshow = () => {
   
   const slides = [
     {
-      image: "/images/model1.jpg",
+      image: "public/images/model1.jpg",
       title: "Complete Model Architecture",
       description: "Overview of the complete neural network architecture for knee OA detection"
     },
     {
-      image: "/images/model2.jpg",
+      image: "public/images/model2.jpg",
       title: "Inception Module",
       description: "Detailed view of the inception module used in our architecture"
     },
     {
-      image: "/images/model3.jpg",
+      image: "public/images/model3.jpg",
       title: "Residual Separable Block",
       description: "Structure of the residual separable block for feature extraction"
     }
