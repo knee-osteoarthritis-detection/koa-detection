@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://knee-oa-backend.onrender.com/', // your backend URL for the API
         changeOrigin: true,
         secure: false,
       }
@@ -24,4 +24,5 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  base: "/koa-detection/", // Add this line for GitHub Pages deployment
 }));
