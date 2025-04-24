@@ -76,6 +76,10 @@ def encode_image_to_base64(image_array):
     _, buffer = cv2.imencode('.png', image_array)
     return base64.b64encode(buffer).decode('utf-8')
 
+@app.route("/", methods=["GET", "HEAD"])
+def health_check():
+    return "", 200
+
 @app.route("/predict", methods=["POST"])
 def predict():
     """Handle image prediction and Grad-CAM generation."""
