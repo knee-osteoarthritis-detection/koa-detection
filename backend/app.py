@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import asyncio
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import load_model, Model
@@ -27,53 +28,16 @@ except Exception as e:
 index_to_label = {0: 0, 1: 3, 2: 4}
 class_labels = {0: "Normal", 3: "Moderate OA", 4: "Severe OA"}
 
-def preprocess_image(image, target_size=(224, 224)):
-    image = image.convert("L")
-    image = image.resize(target_size)
-    image = np.array(image) / 255.0
-    image = np.expand_dims(image, axis=-1)
-    image = np.expand_dims(image, axis=0)
-    return image.astype(np.float32)
-
-def compute_gradcam(model, img_array, last_conv_layer_name="activation_9"):
-    grad_model = Model(
-        inputs=model.input,
-        outputs=[model.get_layer(last_conv_layer_name).output, model.output]
-    )
-    with tf.GradientTape() as tape:
-        conv_outputs, predictions = grad_model(img_array)
-        predicted_class = tf.argmax(predictions[0])
-        loss = predictions[:, predicted_class]
-    grads = tape.gradient(loss, conv_outputs)
-    pooled_grads = tf.reduce_mean(grads, axis=(0, 1, 2))
-    conv_outputs = conv_outputs[0]
-    heatmap = np.zeros(shape=conv_outputs.shape[:-1], dtype=np.float32)
-    for i in range(pooled_grads.shape[-1]):
-        heatmap += pooled_grads[i] * conv_outputs[:, :, i]
-    heatmap = np.maximum(heatmap, 0)
-    heatmap /= np.max(heatmap) + 1e-8
-    return heatmap
-
-def overlay_heatmap(image, heatmap, alpha=0.4):
-    image = image.convert("L").resize((224, 224))
-    img_array = np.array(image)
-    heatmap = cv2.resize(heatmap, (img_array.shape[1], img_array.shape[0]))
-    heatmap = np.uint8(255 * heatmap)
-    heatmap = cv2.applyColorMap(heatmap, cv2.COLORMAP_JET)
-    img_color = cv2.cvtColor(img_array, cv2.COLOR_GRAY2BGR)
-    superimposed_img = cv2.addWeighted(img_color, 1 - alpha, heatmap, alpha, 0)
-    return superimposed_img
-
-def encode_image_to_base64(image_array):
-    _, buffer = cv2.imencode('.png', image_array)
-    return base64.b64encode(buffer).decode('utf-8')
+# Add asynchronous preprocessing and prediction
+async def async_predict(processed_image):
+    return await asyncio.to_thread(model.predict, processed_image)
 
 @app.route("/", methods=["GET", "HEAD"])
 def health_check():
     return "Backend is live!", 200
 
 @app.route("/predict", methods=["POST"])
-def predict():
+async def predict():
     print("📩 /predict POST request received")
 
     if model is None:
@@ -91,7 +55,9 @@ def predict():
 
         print("✅ Image preprocessed")
 
-        predictions = model.predict(processed_image)[0]
+        predictions = await async_predict(processed_image)
+        predictions = predictions[0]  # remove batch dim
+
         predicted_index = np.argmax(predictions)
         predicted_class = index_to_label[predicted_index]
         confidence = float(predictions[predicted_index]) * 100
@@ -123,4 +89,4 @@ def predict():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, threaded=True)
