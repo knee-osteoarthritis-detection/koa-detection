@@ -13,19 +13,24 @@ import NotFound from "./pages/NotFound";
 import "./styles/global.css";
 import { useState } from "react";
 
-// API Base URL for Flask
-const API_BASE_URL = "http://127.0.0.1:5000";
+// ► updated to your live Render backend:
+const API_BASE_URL = "https://knee-oa-backend.onrender.com";
 
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [prediction, setPrediction] = useState<{ file: File | null; label?: string; confidence?: number }>({
+  const [prediction, setPrediction] = useState<{
+    file: File | null;
+    label?: string;
+    confidence?: number;
+  }>({
     file: null,
   });
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      {/* add basename so client-side routes work under /koa-detection/ */}
+      <BrowserRouter basename="/koa-detection">
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-1">
@@ -36,9 +41,17 @@ const App = () => {
               <Route path="/implementation" element={<ImplementationPage />} />
               <Route
                 path="/upload"
-                element={<UploadPage apiUrl={API_BASE_URL} setPrediction={setPrediction} />}
+                element={
+                  <UploadPage
+                    apiUrl={API_BASE_URL}
+                    setPrediction={setPrediction}
+                  />
+                }
               />
-              <Route path="/prediction" element={<PredictionPage prediction={prediction} />} />
+              <Route
+                path="/prediction"
+                element={<PredictionPage prediction={prediction} />}
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
