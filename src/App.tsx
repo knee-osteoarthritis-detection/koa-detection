@@ -14,7 +14,8 @@ import "./styles/global.css";
 import { useState } from "react";
 
 // ► updated to your live Render backend:
-const API_BASE_URL = "http://localhost:10000";
+const API_BASE_URL = "http://localhost:5000";
+
 
 const queryClient = new QueryClient();
 
@@ -30,7 +31,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       {/* add basename so client-side routes work under /koa-detection/ */}
-      <BrowserRouter basename="/koa-detection">
+      <BrowserRouter>
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-1">

@@ -93,7 +93,7 @@ const ImplementationPage = () => {
                   <div className="aspect-auto bg-white rounded">
                     {!imageError ? (
                       <img 
-                        src="public/images/architecture-diagram.jpg"
+                        src="/images/architecture-diagram.jpg"
                         alt="System Architecture Diagram showing Data Collection, Preprocessing, Model Training, and UI Integration phases"
                         className="w-full h-auto object-contain mx-auto"
                         style={{ maxHeight: '600px' }}
@@ -339,7 +339,7 @@ const ImplementationPage = () => {
                   <div className="aspect-square bg-white rounded">
                     {!imageError ? (
                       <img 
-                        src="public/images/matrix.png"
+                        src="/images/matrix.png"
                         alt="Confusion Matrix showing model prediction accuracy across different KL grades"
                         className="w-full h-auto object-contain mx-auto"
                         style={{ maxWidth: '500px' }}

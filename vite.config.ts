@@ -5,16 +5,16 @@ import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
   server: {
-    host: "::",
-    port: 8080,
+    host: "0.0.0.0",
+    port: 3000, // Match Docker mapping
     proxy: {
       '/api': {
-        target: 'https://knee-oa-backend.onrender.com/', // your backend URL for the API
+        target: 'http://localhost:5000', // points to backend on host
         changeOrigin: true,
         secure: false,
       }
     }
-  },
+  },  
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
@@ -24,5 +24,6 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "/koa-detection/", // Add this line for GitHub Pages deployment
+  // Uncomment this if deploying to GitHub Pages
+  // base: "/koa-detection/", 
 }));

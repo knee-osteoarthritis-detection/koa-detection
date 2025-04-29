@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.backend
+    ports:
+      - "5000:10000"
+    volumes:
+      - .:/app
+    working_dir: /app/backend
+    environment:
+      - PORT=10000
+    command: python3 app.py
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:80"  # Nginx runs on port 80 internally
+    depends_on:
+      - backend
